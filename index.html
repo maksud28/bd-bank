@@ -24,19 +24,19 @@
             <div class="col-md-4">
                 <div class="deposit status">
                     <h5>Deposit</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentwithdraw">00</span></h2>
                 </div>                
             </div>
             <div class="col-md-4">
                 <div class="balance status">
                     <h5>Balance</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentBalance">00</span></h2>
                 </div>                
             </div>
         </div>
@@ -44,17 +44,17 @@
             <div class="col-md-6">
                 <div class="submit-area">
                     <h4>Deposit</h4>
-                    <input type="text" class="form-control" placeholder="$ amount you want to Deposit"> 
+                    <input id="depositInput" type="text" class="form-control" placeholder="$ amount you want to Deposit"> 
                     <br>
-                    <button class="btn btn-success">Deposit</button>
+                    <button id="deposit" class="btn btn-success">Deposit</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="submit-area">
                     <h4>Withdraw</h4>
-                    <input type="text" class="form-control" placeholder="$ amount you want to withdraw"> 
+                    <input id="withdrawInput" type="text" class="form-control" placeholder="$ amount you want to withdraw"> 
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button id="withdraw" class="btn btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
@@ -73,7 +73,102 @@
 
             const transactionArea = document.getElementById("transaction-area");
             transactionArea.style.display = "block";
-        })    
+        })  
+    </script>    
+
+    <script>
+    /**
+        const depositBtn = document.getElementById("deposit");
+            depositBtn.addEventListener("click", function(){
+            console.log(" Deposit clicked");
+
+        const depositAmount = document.getElementById("depositInput").value;
+        const depositNumber = parseFloat(depositAmount);
+            
+        const currentDepo = document.getElementById("currentDeposit").innerText;
+        const currentDeposit = parseFloat(currentDepo);
+
+        const totalDeposit = depositNumber + currentDeposit;
+            console.log(totalDeposit);
+
+            document.getElementById("currentDeposit").innerText = totalDeposit;
+
+        const currentBal = document.getElementById("currentBalance").innerText;
+        const currentBalance = parseFloat(currentBal);            
+
+        const depositFinalbalance = currentBalance + depositNumber;            
+            document.getElementById("currentBalance").innerText = depositFinalbalance;
+            document.getElementById("depositInput").value = ""; // clear value                
+        })
+        **/
+
+        const depositBtn = document.getElementById("deposit");
+            depositBtn.addEventListener("click", function(){
+            console.log(" Deposit clicked");
+
+        const depositAmount = document.getElementById("depositInput").value;
+        const depositNumber = parseFloat(depositAmount);
+
+            updateSpantext ("currentDeposit", depositNumber); // function call
+            updateSpantext("currentBalance", depositNumber ); // function call
+            
+            document.getElementById("depositInput").value = ""; // clear inpute value  
+        
+        })
+
+        function updateSpantext(id, depositNumber){                // function declare                 
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalAmount = depositNumber + currentNumber;
+                document.getElementById(id).innerText = totalAmount;
+        }
+
+
+    </script>
+        
+    <script>
+        
+        const withdrawBtn = document.getElementById("withdraw");
+            withdrawBtn.addEventListener("click", function(){
+            console.log(" wBtn Clicked");
+
+        const withdrawAm = document.getElementById("withdrawInput").value;
+        const withdrawAmount = parseFloat(withdrawAm);
+
+        const currentwithdrawBal = document.getElementById("currentwithdraw").innerText;
+        const currentwithdrawBalance = parseFloat(currentwithdrawBal);
+
+                
+        const finalwithdrawAmount = withdrawAmount + currentwithdrawBalance;
+            document.getElementById("currentwithdraw").innerText = finalwithdrawAmount;
+
+        const currentBal = document.getElementById("currentBalance").innerText;
+        const currentBalance = parseFloat(currentBal);
+
+        const finalBalance = currentBalance - withdrawAmount;
+            console.log(finalBalance);
+
+            document.getElementById("currentBalance").innerText = finalBalance;
+            document.getElementById("withdrawInput").value = "";
+        })
+
+        // const withdrawBtn = document.getElementById("withdraw");
+        //     withdrawBtn.addEventListener("click", function(){
+        //     console.log(" wBtn Clicked");
+
+        // const withdrawAm = document.getElementById("withdrawInput").value;
+        // const withdrawAmount = parseFloat(withdrawAm);
+
+        // })
+
+        function updateSpantextSecoand (id){
+            const currentwithdrawBal = document.getElementById(id).innerText;
+            const currentwithdrawBalance = parseFloat(currentwithdrawBal);                
+            const finalwithdrawAmount = withdrawAmount + currentwithdrawBalance;
+            document.getElementById(id).innerText = finalwithdrawAmount;
+        }
+
+
 
     </script>
 
