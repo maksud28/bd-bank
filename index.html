@@ -13,8 +13,8 @@
         <h1 class="text-center">Wellcome To BD Bank</h1>
         <div class="submit-area">
             <h4>login</h4>
-            <input type="text" class="form-control" placeholder="Enter e-mail Please"> <br>
-            <input type="password" class="form-control" name="" id="" placeholder="Enter password"><br>
+            <input id="emailInput" type="text" class="form-control" placeholder="Enter e-mail Please"> <br>
+            <input type="password" class="form-control" name="" id="passwordInput" placeholder="Enter password"><br>
             <button id="login" class="btn btn-success">Enter</button>
         </div>
     </div>
@@ -97,15 +97,10 @@
         const widhdrawNumber = getInputNumber("withdrawInput");
         
             updateSpantext("currentwithdraw", widhdrawNumber); // function call
+            updateSpantext("currentBalance", -1 * widhdrawNumber); // function call
 
-        const currentBal = document.getElementById("currentBalance").innerText;
-        const currentBalance = parseFloat(currentBal);
-
-        const finalBalance = currentBalance - widhdrawNumber;
-            console.log(finalBalance);
-
-            document.getElementById("currentBalance").innerText = finalBalance;
-            document.getElementById("withdrawInput").value = "";
+            document.getElementById("withdrawInput").value = ""; // clear inpute value  
+            
         })
 
         function getInputNumber(id){
@@ -114,10 +109,10 @@
                 return amountNumber; 
         }
 
-        function updateSpantext(id, depositNumber){                // function declare                 
+        function updateSpantext(id, addedNumber){                // function declare                 
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
-            const totalAmount = depositNumber + currentNumber;
+            const totalAmount = addedNumber + currentNumber;
                 document.getElementById(id).innerText = totalAmount;
         }
 
